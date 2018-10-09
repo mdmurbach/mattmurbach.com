@@ -17,5 +17,6 @@ deploy:
   access_key_id: $(AWS_ACCESS_KEY_ID)
   secret_access_key: $(AWS_SECRET_ACCESS_KEY)
   bucket: $(DEV_BUCKET)
+  region: us-west-2
   set_public: true
   artifacts: public_website
