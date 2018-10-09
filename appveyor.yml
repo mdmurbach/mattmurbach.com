@@ -12,6 +12,8 @@ environment:
     secure: 5u0pzpll1lcn65y6DqXTEs7PzLwLh99J4GZkDAvMhPU=
   AWS_SECRET_ACCESS_KEY:
     secure: 89s8cVhLnaOUSm5unh5aeX0//9chlBJFyHo/+zFCvOKNy9TSMZPP92Aj7sMZNmC7
+after_test:
+  - ps: $root = Resolve-Path .\public; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName to-publish }
 deploy:
 - provider: S3
   access_key_id: $(AWS_ACCESS_KEY_ID)
@@ -19,4 +21,4 @@ deploy:
   bucket: $(DEV_BUCKET)
   region: us-west-2
   set_public: true
-  artifacts: public_website
+  artifacts: to-publish
