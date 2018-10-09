@@ -1,0 +1,89 @@
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.navbar-custom {
+    background-color: #1d2120;
+}
+
+.navbar-custom .navbar-nav .nav-link,
+.navbar-custom .navbar-brand {
+    color: white;
+}
+
+.navbar-custom .navbar-nav .nav-link.active {
+    /*font-weight: bold;*/
+    text-decoration: underline;
+}
+
+.intro-section {
+    margin: 5%;
+    align-items: center;
+    text-align: center;
+}
+
+.intro-wrapper {
+    background-color: #607D8B;
+}
+
+.intro-text > a {
+    color: #fff;
+    font-weight: bold;
+}
+
+.intro-text {
+    color: #CFD8DC;
+}
+
+.btn-intro {
+    margin: 1%;
+    font-weight: bold;
+    padding: 2%;
+}
+
+.news-wrapper {
+    padding: 5%;
+    height: calc(100vh - 50px);
+    height: -moz-calc(100vh - 50px);
+    overflow-y: scroll;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-image-left {
+  max-width: 100%;
+  display: inline;
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-top-left-radius: calc(.25rem - 1px);
+  margin-bottom: 10px;
+}
+
+.card-image-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-img {
+    max-width: 100%;
+    min-height: 50vh;
+    max-height: 90vh;
+}
+
+.panel-profile .panel-title{
+    margin-bottom:5px
+}
+.panel-profile .panel-heading{
+    height:150px;
+    background-size:cover
+}
+.panel-profile-img{
+    max-width:75px;
+    margin-top:-37.5px;
+    margin-bottom:5px;
+    border:3px solid #fff;
+    border-radius:100%;
+    box-shadow:0 1px 1px rgba(0,0,0,0.1)
+}

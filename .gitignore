@@ -1,0 +1,6 @@
+*.DS_Store
+
+# AWS credentials
+credentials.csv
+
+/public

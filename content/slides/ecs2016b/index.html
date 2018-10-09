@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Matt Murbach ECS 2016b Presentation</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="./css/d3.slider.css" />
+    <link rel="stylesheet" href="./css/S1STstyling.css" />
+
+    <!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+    <!--Add support for earlier versions of Internet Explorer -->
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+
+    <style>
+        .reveal section img { background:none; border:none; box-shadow:none; }
+
+    </style>
+</head>
+<body>
+    <div id="logoW" style="background: url(images/cheme.png);
+                        position: absolute;
+                        top: 3vh;
+                        left: 3vw;
+                        width: 200px;
+                        height: 29px;"></div>
+
+    <div id="logoCEI" style="background: url(images/cei.png);
+                        position: absolute;
+                        top: 3vh;
+                        right: 3vw;
+                        width: 200px;
+                        height: 43px;"></div>
+    <div class="reveal">
+        <div class="slides">
+			<section>
+                <br></br>
+                <h3 style="width:100%; margin-left: 5%; text-align:left;">Linear and Nonlinear Electrochemical Impedance Spectroscopy: A Data Science Perspective</h3>
+				<br></br>
+                <h4><u>Matthew D. Murbach</u> and Daniel T. Schwartz</h4>
+				<p style="text-align:center;">
+                    Electrochemical Materials and Interfaces Lab<br>Department of Chemical Engineering, <br>University of Washington, Seattle, WA</p>
+                <br></br>
+                <p style="text-align:right; font-family: monospace;"> mmurbach@uw.edu </p>
+            </section>
+			<section>
+                <div>
+    				<h3>Electrochemical Impedance Spectroscopy:</h3>
+                    <h4> <u>Linear</u> + Nonlinear</h4>
+                    <div style="display: flex">
+                        <div style="width: 70%">
+                            <img data-src="images/eis-IV.png"/>
+                            <p>Small perturbation = <br> Linear response</p>
+                        </div>
+                        <div style="flex-grow: 1; padding-left: 2vw;">
+                            <img data-src="images/eis.png" width="80%"/>
+                            <p>EIS provides a <strong>linearized</strong> method for separating physical processes via timescales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fragment fade-in">
+                    <div style="position: absolute; background: white; bottom: 20%; left: 0; height: 40%; border-radius: 15px 50px; text-align: left; width: 50%" class="fragment fade-out">
+                        <img data-src="images/parameters.png"  style="margin-left: 0px"/>
+                    </div>
+                </div>
+                <br></br>
+                <p style="position: absolute; bottom:0px; right:10px; color:gray; font-size:50%; text-align: right">
+                    M. E. Orazem and B. Tribollet, Electrochemical Impedance Spectroscopy (2008)<br>
+                    E.  Barsoukov and J. R. Macdonald, Impedance Spectroscopy (2005)
+                </p>
+                <aside class="notes">
+                    So let's just dive in... From the wide variety of great talks in this EIS session this week, I think it's relatively safe to say that impedance spectroscopy is a powerful technique for generating insight into electrochemical systems. As most of you know, the basis for linear EIS is the use of a small perturbation which ensures that the response is linear. This makes the analysis of the results relatively straightforward and there is a lot of great literature in this area. And one example of this might be fitting models to the example spectra shown here. We might get 6 or 7 bits of information from this type of analysis, but in the physical system there are often a lot more parameters that go into it. In a typical battery model for instance, you might have 30 or 40 parameters.
+                </aside>
+			</section>
+            <section>
+				<h3>Electrochemical Impedance Spectroscopy:</h3>
+                <h4> Linear + <u>Nonlinear</u></h4>
+                <div style="display: flex">
+                    <div style="width: 70%">
+                        <img data-src="images/nleis-IV.png" />
+                        <p>Moderate perturbation = <br> Harmonic response</p>
+                    </div>
+                    <div style="flex-grow: 1; padding-left: 2vw;">
+                        <img data-src="images/harmonic-growth.png" width="80%"/>
+                    </div>
+                </div>
+                <br></br>
+                <p style="position: absolute; bottom:0px; right:0px; color:gray; font-size:50%; text-align: right">
+                    J. A. Medina and D. T. Schwartz, Journal of the Electrochemical Society, 144, 155–164 (1997).<br>
+                    J. R. Wilson, D. T. Schwartz, and S. B. Adler, Electrochimica Acta, 51, 1389–1402 (2006).
+                </p>
+                <aside class="notes">
+                    Well one way to increase the informational content of this technique is through nonlinear EIS, where the use of a moderate amplitude perturbation leads to a harmonic response. And these harmonics grow out of the background in a well defined power lay type way where the first grows linearly, the second quadratically, and the third cubically. And this is math that the schwartz lab has been working on for 20 plus years and the really powerful part about it is that it allows you to remove the amplitude dependence and capture a purely frequency dependent dispersion coefficient like we do in EIS. More recently, this technique was shown to be a powerful method for discriminating between different oxygen transport models in SOFC half cell. Now we are applying NLEIS to a full cell lithium ion battery.
+                </aside>
+			</section>
+            <section>
+                <div class="stretch" style="vertical-align: middle; display: inline">
+                    <h3>NLEIS experimental spectra</h3>
+                    <img data-src="images/experimental.png"/>
+                    <div style="position: absolute; background: #e8d3a2; border: 5px solid #33006f; bottom: 40%; height: 20%; padding: 5vh 5vw;  left: 10%; right: 10%; border-radius: 15px 50px" class="fragment current-visible" data-fragment-index="2">
+                        <h4 style="float: left; text-align: left">Nonlinear EIS spectra add a source of additional information...</h4>
+                        <br> <h4 style="float: right"> ...but are more challenging to interpret.</h4>
+                    </div>
+                </div>
+                <aside class="notes">
+                    And when we do this experimentally, we get harmonic spectra. In fact performing these experiments is relatively straightforward with standard potentiostat + FRA and by choosing the correct amplitudes we essentially get the linear response EIS plus additional higher order harmonic spectra. So the challenge isn't in performing the experiments, it's in analyzing the results.
+                </aside>
+            </section>
+            <section>
+                <div class="stretch" style="vertical-align: middle; display: inline;">
+                    <h3>Computing nonlinear impedance spectra using the pseudo 2-dimensional battery model</h3>
+                    <img data-src="images/modeling.png" style="margin: 0px auto 50px;"/>
+                    <br></br>
+                    <p style="position: absolute; bottom:0px; right:0px; color:gray; font-size:50%; text-align: right">
+                        M. Doyle, T. F. Fuller, and J. Newman, Journal of the Electrochemical Society, 140, 1526–1533 (1993).<br>
+                        T. F. Fuller, M. Doyle, and J. Newman, Journal of the Electrochemical Society, 141, 1–10 (1994).<br>
+                        M. Doyle, J. Newman, A. S. Gozdz, C. N. Schmutz, and J.-M. Tarascon, Journal of the Electrochemical Society, 143, 1890–1903 (1996).
+                    </p>
+                </div>
+                <aside class="notes">
+                    To do this we are using the pseudo 2-dimensional battery model from Prof. Newman's group. This happens to be one of the most widely used models and we aren't going to mess with the physics really. And I should say that We are currently running these simulations on a local computer in the lab, but this approach would scale really well to supercomputer or cloud computing resources
+                </aside>
+            </section>
+            <section>
+                <h3> A data driven approach </h3>
+                <h6 style="font-size: 100%; font-weight: normal">
+                <strong>Method:</strong> Perform tens of thousands of simulations for each harmonic covering the 40-dimensional parameter space </h6>
+                <ul style="font-size: 90%; width: 70%">
+                    <li class="fragment highlight-blue"> Explore interactions between parameters</li>
+                    <li> Analyze parameter sensitivities as a function of frequency</li>
+                    <li> Introduce supervised and unsupervised machine learning</li>
+                </ul>
+                <aside class="notes">
+                    And now is where we can see the differences between the more traditional deterministic approach we took before with the SOFCs for example. There we took several different models which all were degenerate in the linear response, and were able to show that by looking at the nonlinear response, we could see what corresponded to experimental data. Here though we want to analyze a little more complex full cell system and by using a data driven approach where we just simulate thousands of simulations for all sorts of different combinations of parameters, we can hope to start to tease out some more information about the complex interactions which lead to these results.
+                </aside>
+            </section>
+            <section data-transition="slide-in none-out" data-autoslide="2000">
+                <h3> Computing spectra across the entire <br> parameter space and frequency range</h3>
+                <div class="stretch">
+                    <table style="border: 0">
+                        <tr style="border: 0">
+                            <td style="vertical-align: middle; border: 0">
+                                <img src="images/parameters.png" style="float: right; max-height: 40vh;"/>
+                            </td>
+                            <td style="vertical-align: middle; border: 0">
+                                <p style="margin: auto; padding: 5vh; font-size: 100%; text-align: center"> The P2D model has dozens of parameters </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle; width: 50%">
+                                <img src="images/gif1.png" style=" float: left; max-height: 40vh"/>
+                            </td>
+                            <td style="vertical-align: middle; width: 50%;">
+                                <p style="margin: auto; padding: 5vh; font-size: 100%; text-align: center"> Sobol' sampling ensures efficient coverage of the parameter space </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br></br>
+                <p style="position: absolute; bottom:0px; right:10px; color:gray; font-size:50%; text-align: right">
+                    https://github.com/SALib<br>
+                    A. Saltelli et al., Computer Physics Communications, 181, 259–270 (2010)
+                </p>
+                <aside class="notes">
+                    So to do this, we take our dozens of parameters in the standard P2D model and vary them throughout physically meaningful ranges. There are some useful statistical methods namely sobol sampling which allow us to cover the parameter space more efficiently that purely random sampling, but essentially what we end up with is a large number of harmonic spectra each with different parameter sets where we have a mean spectra looks like a typical battery spectra like we might expect.
+                </aside>
+            </section>
+            <section data-transition="none-in slide-out">
+                <h3> Computing spectra across the entire <br> parameter space and frequency range</h3>
+                <div class="stretch">
+                    <table style="border: 0">
+                        <tr style="border: 0">
+                            <td style="vertical-align: middle; border: 0">
+                                <img src="images/parameters.png" style="float: right; max-height: 40vh;"/>
+                            </td>
+                            <td style="vertical-align: middle; border: 0">
+                                <p style="margin: auto; padding: 5vh; font-size: 100%; text-align: center">  The P2D model has dozens of parameters </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle; width: 50%">
+                                <img src="images/gif.gif" style=" float: left; max-height: 40vh"/>
+                            </td>
+                            <td style="vertical-align: middle; width: 50%;">
+                                <p style="margin: auto; padding: 5vh; font-size: 100%; text-align: center"> Sobol' sampling ensures efficient coverage of the parameter space </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br></br>
+                <p style="position: absolute; bottom:0px; right:10px; color:gray; font-size:50%; text-align: right">
+                    https://github.com/SALib<br>
+                    A. Saltelli et al., Computer Physics Communications, 181, 259–270 (2010)
+                </p>
+                <aside class="notes">
+                    So to do this, we take our dozens of parameters in the standard P2D model and vary them throughout physically meaningful ranges. There are some useful statistical methods namely sobol sampling which allow us to cover the parameter space more efficiently that purely random sampling, but essentially what we end up with is a large number of harmonic spectra each with different parameter sets where we have a mean spectra looks like a typical battery spectra like we might expect.
+                </aside>
+            </section>
+            <!-- <section data-transition="slide-in none-out">
+                <h3> Computing spectra across the entire <br> parameter space and frequency range</h3>
+                <div class="stretch">
+                    <img data-src="images/RMSD11v22highf-select.png" style=" margin: 0 auto;"/><br>
+                </div>
+                <img data-src="images/RMSDeq.png" style=" margin: 0 auto;">
+            </section> -->
+            <section data-transition="slide-in slide-out">
+                <h3> Computing spectra across the entire <br> parameter space and frequency range</h3>
+                <div class="stretch">
+                    <img data-src="images/RMSD11v22highf-select.png" style=" margin: 0 auto;"/><br>
+                </div>
+                <img data-src="images/RMSDeq.png" style=" margin: 0 auto;">
+                <aside class="notes">
+                    So if we take all of these simulations and we compare each one with the mean spectra. So here we have how close a certain spectra is to the mean linear spectra versus how close a certain spectra is to the mean second harmonic spectra. And already we can see something interesting about these results. There are a lot of cases where a we have very similar linear impedance spectras, but different second harmonic spectras and vice versa. For instance let's dive into these two points here where the linear impedance is the same, but the second harmonic is different...
+                </aside>
+            </section>
+            <section>
+                <h3>For linear impedance we have simple ways of discussing the informational content</h3>
+                <img data-src="images/high-low-Z11.png" width="90%"/>
+                <aside class="notes">
+                    As expected, these two simulations, despite having different parameter sets, have degenerate linear impedance spectras. The information content in both of these is identical and we can't say anything about the underlying physics that's different between the two.
+                </aside>
+            </section>
+            <section>
+                <h3>For nonlinear impedance, more interactions lead to additional information</h3>
+                <img data-src="images/high-low-Z22-2.png" width="90%"/>
+                <img data-src="images/jf2.png"/>
+                <aside class="notes">
+                    But what if we look at the second harmonic. Again we are looking at the real component of this second harmonic frequency dispersion function Z2 versus the imaginary component. And we can immediately see that they are different. And the reason they are different is because the parameters that were different in the two simulations were the charge transfer coefficients, the alphas, in the kinetics of both the positive and the negative electrodes. Now, I could've told you this directly from the math, this is one of the simplest examples of the differing sensitivity between the first and second harmonic, but what if we want to dive a little deeper and explore some of the more complex interactions between parameters and the harmonics' sensitivity to them.
+                </aside>
+            </section>
+            <section>
+                <h3> A data driven approach </h3>
+                <h6 style="font-size: 100%; font-weight: normal">
+                <strong>Method:</strong> Perform tens of thousands of simulations for each harmonic covering the 40-dimensional parameter space </h6>
+                <ul style="font-size: 90%; width: 70%">
+                    <li> Explore interactions between parameters</li>
+                    <li style="color: #1b91ff"> Analyze parameter sensitivities as a function of frequency</li>
+                    <li> Introduce supervised and unsupervised machine learning</li>
+                </ul>
+                <aside class="notes">
+
+                </aside>
+            </section>
+            <section>
+                <h3> Sensitivity Analysis </h3>
+                <table>
+                    <tr>
+                        <th style="width: 50%; text-align: center; vertical-align: bottom">
+                            Traditional, one-factor at a time
+                        </th>
+                        <th style="width: 50%; text-align: center; vertical-align: bottom">
+                            Varaiance-based
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top">
+                            <ul>
+                                <li>Change one parameter at a time, calculate derivatives</li>
+                                <li>Limited to probing local sensitivity</li>
+                                <li>No sense of interactions between parameters</li>
+                                <li>Fast and easily interpreted</li>
+                            </ul>
+                        </td>
+                        <td style="vertical-align: top">
+                            <ul>
+                                <li>Sample a distribution of parameters, calculate sensitivity indices</li>
+                                <li>Probes the global sensitivity</li>
+                                <li>Requires many more simulations</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <aside class="notes">
+                    To do this we can look at a sensitivity of the responses given the set of parameters. So the example I just showed is essentially this kind of traditional, change one parameter at a time type of approach where we can see how a single change affects the response, but for a nonlinear system we are only probing local sensitivity and we can't say anything about how parameters interact.  The next level of analysis though is called this variance based approach, where the goal is to essentially say how much of the variance in the output can be attributed to each of the different parameter inputs. This method is a global method since we care about the entire range of the parameters.
+                </aside>
+            </section>
+            <section>
+                <div class="stretch">
+                    <br></br>
+                    <h3> Variance-based Sensitivity Analysis </h3>
+                    <table>
+                        <tr>
+                            <td style="border: 0; width: 50%">
+                                First Order Sensitivity
+                            </td>
+                            <td style="border: 0; font-size: 90%">
+                                $ S_i = \frac{V_{X_i} \left(E_{X_{\sim i}} \left(Y | X_i \right)\right)}{V\left(Y\right)}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 0">
+                                <ul style="padding: 0 5%">
+                                    <li><p style="; font-size: 75%;">How much the variance in the output would decrease if we knew $X_i$</p></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0">
+                                Total Sensitivity
+                            </td>
+                            <td style="border: 0; font-size: 90%">
+                                $ S_{Ti} = \frac{E_{X_{\sim i}} \left(V_{X_{i}} \left(Y | X_{\sim i} \right)\right)}{V\left(Y\right)} = 1 - \frac{V_{X_{\sim i}} \left(E_{X_{i}} \left(Y | X_{\sim i} \right)\right)}{V\left(Y\right)}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 0">
+                                <ul style="padding: 0 5%">
+                                    <li><p style="; font-size: 75%;">How much variance that would be left if we could fix everything except $X_i$</p></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p style="position: absolute; bottom:0px; right:10px; color:gray; font-size:50%; text-align: right">
+                    A. Saltelli, Computer Physics Communications, 145, 280–297 (2002)<br>
+                    A. Saltelli et al., Computer Physics Communications, 181, 259–270 (2010)
+                </p>
+                <aside class="notes">
+                    There are a few different sensitivity indices that you can calculate in this type of analysis. Namely, first and total order sensitivity. For the first order sensitivity index we want to look at the variance (that's this V) of expected value (thats this E) of the response given the parameter Xi. This gives us a sense for the amount the variance that we would remove if we were to fix that parameter. The second index that we care about, and this will be what I show you on the next chart is the total sensitivity. And here we want to ask what is the expected value of the variance in the response given all of the parameters except Xi. And obviously these are all normalized to the total variance in the output V(Y).
+                </aside>
+            </section>
+            <section>
+                <div class="stretch" style="margin: 0 auto; min-height: 1000px">
+                    <iframe data-src="./interactive" style="scrolling: none; height: 100%; width: 100%;"></iframe>
+                </div>
+            </section>
+            <section>
+                <h3> A data driven approach </h3>
+                <h6 style="font-size: 100%; font-weight: normal">
+                <strong>Method:</strong> Perform tens of thousands of simulations for each harmonic covering the 40-dimensional parameter space </h6>
+                <ul style="font-size: 90%; width: 70%">
+                    <li> Explore interactions between parameters</li>
+                    <li> Analyze parameter sensitivities as a function of frequency</li>
+                    <li style="color: #1b91ff"> Introduce supervised and unsupervised machine learning</li>
+                </ul>
+                <aside class="notes">
+                </aside>
+            </section>
+            <section>
+                <h3> Next steps: Extend insight from the <br> model to the physical system</h3>
+                <br>
+                <table style="align: left">
+                    <tr>
+                        <td colspan="1">
+                            Unsupervised Machine Learning
+                        </td>
+                        <td style="border: 0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:0; vertical-align: top; width: 50%;">
+                            <ul>
+                                <li>Understand underlying structure of spectra</li>
+                                <li>Gain insight into clustering or classification of battery states</li>
+                            </ul>
+                        </td>
+                        <td style="border:0;">
+                            <img src="images/clustering22.png"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                            Supervised Machine Learning
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:0" colspan="2">
+                            <ul>
+                                <li>Given an impedance spectra, predict parameters for the model</li>
+                                <li>Estimate internal state metrics (state of health + remaining usable lifetime)</li>
+                            </ul>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <aside class="notes">
+                    And finally, now that we are building this relatively big data set, we can apply other cool machine learning algorithms as well. For one, we can use unsupervised machine learning, things like principal component analysis and clustering algorithms to discover underlying patterns in the parameter or battery states. As well as supervised methods, where we can ask the model to learn the reverse problem. Namely given an impedance spectra, what are the parameters that correspond. Other people have started to work on this with just the EIS data, but we think with the additional information in the higher harmonics, we can more finely tease out the relationships and ultimately get better predictions.
+                </aside>
+            </section>
+            <section>
+                <h3>Summary</h3>
+                <ul>
+                    <li>Nonlinear electrochemical impedance spectroscopy (NLEIS) can provide additional information with the same effort and time as an EIS experiment.</li>
+                    <li>The harmonic spectra each provide different information about the physicochemical system</li>
+                    <li>Data science tools can provide insight into our electrochemical research -- we shouldn't just let them be used to sell advertisements...</li>
+                </ul>
+                <aside class="notes">
+
+                </aside>
+            </section>
+            <section>
+				<h3>Acknowledgements</h3>
+                <br></br>
+                <p style="text-align: left"> Prof. Dan Schwartz </p>
+                <p style="text-align: left"> Prof. Hanna Hajishirzi </p>
+                <br></br>
+                <table width="100%">
+                    <tr style="border: 0">
+                        <td style="border: 0" align="center">
+                            <img src="images/DOE.png" height="75" width="75"/>
+                            <p style="text-align: center">Dept. of Education GAANN</p>
+                        </td>
+                        <td style="border: 0" align="center">
+                            <img src="images/IGERT.png" height="75"/>
+                            <p>NSF Data Science IGERT</p>
+                        </td>
+                        <td style="border: 0" align="center">
+                            <img src="images/cei.png" height="75"/>
+                            <p>UW Clean Energy Institute</p>
+                        </td>
+                    </tr>
+                </table>
+			</section>
+            <section>
+    				<h3>Thank you!</h3>
+                    <h4>Questions?</h4>
+                    <br></br>
+                    <br></br>
+                    <p>Presentatation can be found at:<br> http://projects.mattmurbach.com/ecs2016b/</p>
+			</section>
+        </div>
+    </div>
+
+	<script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <!-- <script>
+        Reveal.initialize();
+    </script> -->
+    <script>
+        Reveal.initialize({
+
+            center: true,
+            width:  1200,
+            height: 900,
+            margin: 0.07,
+            history: true,
+            viewDistance: 5,
+            slideNumber: true,
+
+            math: {
+                mathjax: '/MathJax/MathJax.js'
+            },
+
+            dependencies: [
+                // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+                // // Interpret Markdown in <section> elements
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+                // Syntax highlight for <code> elements
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+                // Zoom in and out with Alt+click
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+
+                // Speaker notes
+                { src: 'plugin/notes/notes.js', async: true },
+
+                // MathJax
+                { src: 'plugin/math/math.js', async: true }
+            ]
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85073727-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<div class="news-wrapper">
+    <h2 style="text-align: center">Recent News</h2>
+    <div class="news-card">
+        {{ range first 4 ((where .Data.Pages.ByDate "Section" "news").Reverse) }}
+                <div class="card">
+                    <div class="card-block">
+                        <div class=row>
+                            <div class="col-md-3 card-image-div">
+                                <img class="card-image-left center-block img-fluid rounded" src="{{ .Params.image }}" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ .Date.Format "2 January 2006" }}</h6>
+                                <p class="card-text">
+                                    {{ if .Truncated }}
+                                        {{ .Summary }}
+                                        <br><a class="text-right btn btn-primary btn-sm" href="{{ .RelPermalink }}">Read More…</a>
+                                    {{ else }}
+                                        {{ .Content }}
+                                    {{ end }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {{ end }}
+        <!-- <div class="w-100 hidden-lg-down"></div>
+        {{ range first 2 (after 2 ((where .Data.Pages.ByDate "Section" "news").Reverse)) }}
+                <div class="card">
+                    <div class="card-block">
+                        <div class=row>
+                            <div class="col-md-3 card-image-div">
+                                <img class="card-image-left center-block img-fluid rounded" src="{{ .Params.image }}" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ .Date.Format "2 January 2006" }}</h6>
+                                <p class="card-text">
+                                    {{ .Summary }}
+                                    {{ if .Truncated }}
+                                        <a class="text-right btn btn-primary btn-sm" href="{{ .RelPermalink }}">Read More…</a>
+                                    {{ end }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {{ end }} -->
+    </div>
+    <a class="text-right btn btn-primary float-right" href="{{ .Site.BaseURL }}/news">See more...</a>
+</div>

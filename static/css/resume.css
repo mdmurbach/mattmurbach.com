@@ -1,0 +1,90 @@
+span.small-caps {
+	font-variant: small-caps;
+}
+
+.resume-card {
+	margin:10px auto;
+	width: 100%;
+}
+
+.resume-card-education > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/UW_lib.jpg) center / cover;
+}
+
+.resume-card-fellowships > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/Lake_Louise.jpg) center / cover;
+}
+
+.resume-card-presentations > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/hurricane-ridge.jpg) center / cover;
+}
+
+.resume-card-service > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/ties_philippines.jpg) center / cover;
+}
+
+.resume-card-research > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/orcas.jpg) center / cover;
+}
+
+.resume-card-teaching > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/sanjuans-view.jpg) center / cover;
+}
+
+.resume-card-awards > .mdl-card__title {
+	height: 200px;
+	color: #fff;
+	font-weight: bold;
+	background: url(../img/resume/ferry-path.jpg) center / cover;
+}
+
+.mdl-card__supporting-text {
+	width:100%;
+}
+
+.mdl-card__supporting-text > .h6 {
+	margin: 0px;
+}
+
+.narrow {
+	margin: 0px;
+}
+
+.mdl-card__title-text {
+	font-weight: bolder;
+}
+
+.tabs {
+	max-width: 100px;
+}
+
+.mdl-layout__tab-bar {
+	padding: 0px;
+	width: 100%;
+}
+
+.mdl-layout__header-row {
+	padding-right: 0px;
+}
+
+.mdl-layout__tab-bar-right-button, .mdl-layout__tab-bar-left-button {
+	display: none;
+}

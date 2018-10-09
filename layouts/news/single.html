@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+{{ $baseurl := .Site.BaseURL }}
+<body>
+
+{{ partial "navbar.html" . }}
+
+<div class="container" style="padding: 5%">
+
+    <h3>{{ .Title }}</h3>
+    <h5>{{ .Date.Format "January 2, 2006" }}</h5>
+    <img class="img-thumbnail img-fluid w-25 float-left" src="{{ .Site.BaseURL }}/{{ .Params.image }}" alt="" style="margin: 3%">
+
+    {{ .Content }}
+    <hr>
+
+    <div class="container-fluid" style="text-align: center;">
+        {{ if .PrevInSection }}
+            <a href="{{.PrevInSection.Permalink}}"> &larr;&nbsp;{{.PrevInSection.Title}}</a> |
+        {{ end }}
+
+        <a href="{{ $baseurl }}/news/#{{ .Date.Format "2017" }}">News Archive</a>
+
+        {{ if .NextInSection }}
+            | <a href="{{.NextInSection.Permalink}}">{{.NextInSection.Title}}&nbsp;&rarr;</a>
+        {{ end }}
+    </div>
+</div>
+
+{{ partial "footer.html" . }}

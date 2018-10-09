@@ -1,0 +1,19 @@
+{{ partial "header.html" . }}
+
+<body>
+{{ partial "navbar.html" . }}
+
+    <div class="container-fluid" style="height: calc(100vh - 50px)">
+        <div class="row">
+            <div class="col-sm-4 intro-wrapper">
+                {{ partial "intro-section.html" .}}
+            </div>
+            <div class="col-sm-8">
+                {{ partial "news-panel.html" .}}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{{ partial "footer.html" . }}
