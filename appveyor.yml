@@ -15,4 +15,4 @@ deploy:
   secret_access_key: $(AWS_SECRET_ACCESS_KEY)
   bucket: $(DEV_BUCKET)
   set_public: true
-  artifact: public/*
+  artifacts: public/*
