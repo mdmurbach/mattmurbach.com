@@ -2,7 +2,7 @@ version: 1.0.{build}
 install:
   - ps: choco install hugo
 build_script:
-  - hugo
+  - hugo -d C:\projects\mattmurbach-com\public\
 environment:
   DEV_BUCKET: mattmurbach.com
   AWS_ACCESS_KEY_ID:
