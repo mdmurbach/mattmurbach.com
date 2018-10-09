@@ -1,0 +1,18 @@
+version: 1.0.{build}
+install:
+  - ps: choco install hugo
+build_script:
+  - hugo
+environment:
+  DEV_BUCKET: mattmurbach.com
+  AWS_ACCESS_KEY_ID:
+    secure: 5u0pzpll1lcn65y6DqXTEs7PzLwLh99J4GZkDAvMhPU=
+  AWS_SECRET_ACCESS_KEY:
+    secure: 89s8cVhLnaOUSm5unh5aeX0//9chlBJFyHo/+zFCvOKNy9TSMZPP92Aj7sMZNmC7
+deploy:
+- provider: S3
+  access_key_id: $(AWS_ACCESS_KEY_ID)
+  secret_access_key: $(AWS_SECRET_ACCESS_KEY)
+  bucket: $(DEV_BUCKET)
+  set_public: true
+  artifact: public/*
