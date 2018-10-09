@@ -4,7 +4,7 @@ install:
 build_script:
   - hugo -d C:\projects\mattmurbach-com\public\
 artifacts:
-  - path: C:\projects\mattmurbach-com\public\*
+  - path: public\*
     name: public_website
 environment:
   DEV_BUCKET: mattmurbach.com
