@@ -22,3 +22,5 @@ deploy:
   region: us-west-2
   set_public: true
   artifacts: to-publish
+  on:
+     appveyor_repo_tag: true
