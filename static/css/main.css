@@ -87,3 +87,34 @@ body {
     border-radius:100%;
     box-shadow:0 1px 1px rgba(0,0,0,0.1)
 }
+
+.c-example__tilt {
+  width: 35vw;
+  height: 35vw;
+  display: block;
+  box-shadow: 0 0.5vw 0.5vw rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  /* transform: perspective(10px); */
+  padding: 1vw;
+  margin: 3vw;
+  border-top: 3px solid transparent;
+}
+
+.c-example__tilt-inner {
+  transform: translateZ(10px);
+  width: 29vw;
+  height: 29vw;
+  margin: 0px auto;
+}
+
+
+.c-example__tilt:hover {
+    /* background: #e1e1e1; */
+    border-top: 3px solid #d0d0d0;
+}
+
+.c-example__tilt:hover .btn-outline-info {
+    color: #fff;
+    background-color: #00b3db;
+    /* border-color: #285e8e; /*set the color you want here*/ */
+}
