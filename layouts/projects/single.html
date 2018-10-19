@@ -1,0 +1,16 @@
+{{ partial "header.html" . }}
+{{ $baseurl := .Site.BaseURL }}
+<body>
+
+{{ partial "navbar.html" . }}
+
+<div class="container" style="padding: 5%">
+
+    <h2>{{ .Title }}</h2>
+    <h4 class="text-muted">{{ .Params.subtitle }}</h4>
+    <hr>
+    {{ .Content }}
+    <hr>
+</div>
+
+{{ partial "footer.html" . }}

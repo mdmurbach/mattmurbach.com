@@ -1,0 +1,41 @@
+{{ partial "header.html" . }}
+
+{{ partial "navbar.html" . }}
+
+<div class="container">
+  <div class="projects-wrapper">
+    {{ range $index, $element := where .Pages "Section" "projects" }}
+      {{ if eq (mod $index 2) 0 }}
+      <div class=row>
+      {{ end }}
+        <div class="c-example__tilt" data-tilt>
+          <div class="c-example__tilt-inner">
+            <div class="mdl-card w-100 h-100">
+              <div class="mdl-card__title">
+                <h5>
+                  <div class="mdl-card__title-text">{{ .Params.title }}</div>
+                  <div class="mdl-card__subtitle-text">{{ .Params.subtitle }}</div>
+                </h5>
+              </div>
+              <div class="mdl-card__supporting-text" style="background: url('{{ .Params.image }}') center / cover; height: 20vw; margin-bottom: 1vw"></div>
+              <div class="mdl-card__supporting-text" style="margin-bottom: 1vw">
+                {{ .Content }}
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="btn btn-outline-info" href="{{ .File.BaseFileName }}">
+                  <strong>Learn more</strong>
+                </a>
+              </div>
+              <div class="mdl-card__menu">
+              </div>
+            </div>
+          </div>
+        </div>
+        {{ if eq (mod $index 2) 1 }}
+      </div>
+        {{ end }}
+      {{ end }}
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
