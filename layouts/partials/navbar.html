@@ -1,9 +1,9 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-faded navbar-custom">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
     <a class="navbar-brand" href="{{ .Site.BaseURL }}">Matt Murbach</a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="navbar-nav">
             <a class='nav-item nav-link {{if .IsHome}}active{{end}}' href='{{ .Site.BaseURL }}'>Home</a>
             <a class='nav-item nav-link {{if eq .File.BaseFileName "resume"}}active{{end}}' href='{{ .Site.BaseURL }}/resume'>Résumé</a>

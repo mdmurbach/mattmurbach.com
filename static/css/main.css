@@ -93,8 +93,6 @@ body {
   height: 35vw;
   display: block;
   box-shadow: 0 0.5vw 0.5vw rgba(0, 0, 0, 0.2);
-  transform-style: preserve-3d;
-  /* transform: perspective(10px); */
   padding: 1vw;
   margin: 3vw;
   border-top: 3px solid transparent;
